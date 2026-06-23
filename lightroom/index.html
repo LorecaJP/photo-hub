@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lightroom 現像ガイド — 撮影＆現像ハブ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* このページ固有：CSSで描く夕暮れパークのサンプル写真 */
+  .scene{position:absolute;inset:0}
+  .sky{position:absolute;inset:0;background:linear-gradient(#1a2a4a 0%,#3d4d7a 26%,#9a6f8e 52%,#e08a5a 74%,#f0b96a 100%)}
+  .sun{position:absolute;left:50%;bottom:30%;transform:translateX(-50%);width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(circle,#fff6d8 0%,#ffd887 45%,rgba(255,200,110,0) 72%);filter:blur(2px)}
+  .hills{position:absolute;left:0;right:0;bottom:24%;height:46%;background:linear-gradient(#5a3f5e,#2e2238);
+    clip-path:polygon(0 60%,12% 38%,26% 55%,40% 22%,52% 48%,66% 18%,80% 50%,92% 30%,100% 52%,100% 100%,0 100%);opacity:.9}
+  .ground{position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(#241a2c,#120c16)}
+  .castle{position:absolute;left:50%;bottom:28%;transform:translateX(-50%);width:60px;height:84px;background:#1b1320;
+    clip-path:polygon(0 100%,0 46%,18% 46%,18% 24%,30% 24%,30% 10%,38% 0,46% 10%,46% 24%,54% 24%,54% 10%,62% 0,70% 10%,70% 24%,82% 24%,82% 46%,100% 46%,100% 100%);opacity:.92}
+  .ov{position:absolute;inset:0;pointer-events:none}
+  #hiOv{mix-blend-mode:multiply;opacity:0}
+  #shOv{opacity:0}
+  #tempOv{mix-blend-mode:overlay;opacity:0}
+</style>
+</head>
+<body data-page="lightroom">
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">PHOTO HUB</a>
+    <a class="home" href="../index.html">↩ ホーム</a>
+    <a href="#steps">4ステップ</a>
+    <a href="#play">触る</a>
+    <a href="#panels">パネル詳解</a>
+    <a href="#mask">マスク</a>
+    <a href="#ai">AI</a>
+    <a href="#recipes">シーン別</a>
+    <a href="#flow">取込〜書出</a>
+    <a href="#keys">ショートカット</a>
+    <a href="#plans">料金</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <span class="eyebrow hero-eyebrow">Develop / Lightroom — 保存版</span>
+    <h1>撮った写真を、<br><span class="accent">いい思い出</span>に仕上げる。</h1>
+    <p class="lead">まずは「基本の4ステップ」だけ覚えて、慣れたら下のパネル詳解やシーン別レシピで深掘りしていきましょう。</p>
+    <div class="hero-meta">
+      <span class="chip">RAWで撮るのがおすすめ</span>
+      <span class="chip">非破壊編集だから失敗ゼロ</span>
+      <span class="chip">MacBook Air M1でも快適</span>
+    </div>
+  </div>
+</header>
+
+<!-- ORIENTATION -->
+<section class="section" id="start">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Orientation — まず全体像</span>
+      <h2>Lightroom って2種類あるの?</h2>
+      <p>名前が似ていて最初に迷うポイント。ざっくり「クラウド版」と「Classic」の2つ。やることは同じなので、最初は触りやすい方でOKです。</p>
+    </div>
+    <div class="two reveal">
+      <div class="obox">
+        <span class="meta">Cloud</span>
+        <h3>Lightroom（クラウド版）</h3>
+        <p>iPhone・iPad・Mac・Webが自動で同期。スマホでサッと編集して家のMacで続き、が得意。シンプルで初心者向き。</p>
+      </div>
+      <div class="obox">
+        <span class="meta">Classic</span>
+        <h3>Lightroom Classic（PC専用）</h3>
+        <p>大量の写真をフォルダで本格管理。プロ定番で機能も最多。じっくり現像するならこちら。</p>
+      </div>
+    </div>
+    <div class="modules reveal">
+      <span class="mod"><b>G</b>ライブラリ＝写真を選ぶ・整理する場所</span>
+      <span class="mod"><b>D</b>現像＝明るさ・色をいじる場所（メイン）</span>
+      <span class="mod"><b>↗</b>書き出し＝完成画像をJPEGで出す</span>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="section" id="steps">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The Workflow</span>
+      <h2>基本は、この4ステップ</h2>
+      <p>「現像」画面で、上から順に触っていくだけ。この流れが体に入れば、どんな写真も迷わず仕上げられます。</p>
+    </div>
+
+    <div class="step reveal">
+      <span class="num">01</span>
+      <div>
+        <span class="role">Light — 明るさ</span>
+        <h3>ライトを整える</h3>
+        <p>まずは明るさから。写真の土台づくりです。</p>
+        <ul>
+          <li><b>露光量</b>：全体の明るさ。ここで適正に合わせる</li>
+          <li><b>ハイライト</b>：明るすぎる部分（空・白い壁）を下げて白飛びを救う</li>
+          <li><b>シャドウ</b>：暗い部分を上げて、潰れたディテールを呼び戻す</li>
+          <li><b>白レベル / 黒レベル</b>：いちばん明るい点・暗い点を決めてメリハリを出す</li>
+        </ul>
+        <div class="tip"><b>コツ</b>　「ハイライトを下げ、シャドウを上げる」だけで、眠い写真が情報量たっぷりに見えます。</div>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <span class="num">02</span>
+      <div>
+        <span class="role">Color — 色</span>
+        <h3>カラーを整える</h3>
+        <p>次に色味。写真の印象がここで決まります。</p>
+        <ul>
+          <li><b>色温度（WB）</b>：青っぽい／オレンジっぽいを補正する</li>
+          <li><b>色かぶり補正</b>：緑／マゼンタ寄りを微調整する</li>
+          <li><b>自然な彩度</b>：派手すぎず自然に色を持ち上げる（肌は守られる）</li>
+          <li><b>彩度</b>：全色を一律に強める（強すぎ注意）</li>
+        </ul>
+        <div class="tip"><b>ごはん写真</b>　色温度を少し暖かめにすると、湯気が立つようなおいしそうな一枚に。</div>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <span class="num">03</span>
+      <div>
+        <span class="role">Texture — 質感</span>
+        <h3>メリハリと質感を足す</h3>
+        <p>立体感とクリアさをプラスして、ぐっと作品っぽく。</p>
+        <ul>
+          <li><b>コントラスト</b>：明暗の差をつけて立体感を出す</li>
+          <li><b>テクスチャ</b>：細かいディテール（木の葉・髪）の質感を強調</li>
+          <li><b>明瞭度</b>：中間調のメリハリ。風景に効くが人物は控えめに</li>
+          <li><b>かすみの除去</b>：少し入れると遠景や空がスッキリ抜ける</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <span class="num">04</span>
+      <div>
+        <span class="role">Finish — 仕上げ</span>
+        <h3>仕上げて、保存する</h3>
+        <p>最後の磨き上げと、次に活きる時短ワザ。</p>
+        <ul>
+          <li><b>シャープ</b>を軽く、<b>ノイズ軽減</b>は暗所・高ISOの写真に</li>
+          <li><b>切り抜き</b>で構図を整える（水平もここで直す）</li>
+          <li><b>プリセット保存</b>：気に入った設定を保存すれば、似た写真にワンクリック適用</li>
+        </ul>
+        <div class="tip"><b>量産のコツ</b>　条件が似たカットは1枚仕上げてプリセット化 → 残りに一括適用が最速です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYGROUND -->
+<section class="section" id="play">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Try It — 触って覚える</span>
+      <h2>スライダーを動かしてみる</h2>
+      <p>夕暮れのパーク風サンプルです。動かすと写真がどう変わるか体感できます。ぐいぐい動かして、最後はRESETで戻せます。</p>
+    </div>
+
+    <div class="lab reveal">
+      <div class="lab-grid">
+        <div class="stage">
+          <div class="scene" id="scene">
+            <div class="sky"></div><div class="sun"></div><div class="hills"></div><div class="castle"></div><div class="ground"></div>
+          </div>
+          <div class="ov" id="hiOv"></div>
+          <div class="ov" id="shOv"></div>
+          <div class="ov" id="tempOv"></div>
+        </div>
+        <div class="controls">
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">露光量<span>明るさ全体</span></span><span class="ctrl-val" id="vExp">0</span></div><input type="range" id="exp" min="-60" max="60" value="0" aria-label="露光量"></div>
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">ハイライト<span>空・明るい部分</span></span><span class="ctrl-val" id="vHi">0</span></div><input type="range" id="hi" min="-100" max="100" value="0" aria-label="ハイライト"></div>
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">シャドウ<span>地面・暗い部分</span></span><span class="ctrl-val" id="vSh">0</span></div><input type="range" id="sh" min="-100" max="100" value="0" aria-label="シャドウ"></div>
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">コントラスト<span>明暗のメリハリ</span></span><span class="ctrl-val" id="vCon">0</span></div><input type="range" id="con" min="-50" max="60" value="0" aria-label="コントラスト"></div>
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">自然な彩度<span>色の鮮やかさ</span></span><span class="ctrl-val" id="vSat">0</span></div><input type="range" id="sat" min="-60" max="80" value="0" aria-label="彩度"></div>
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">色温度<span>青 ⇄ 暖色</span></span><span class="ctrl-val" id="vTemp">0</span></div><input type="range" id="temp" min="-60" max="60" value="0" aria-label="色温度"></div>
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">かすみの除去<span>抜けの良さ</span></span><span class="ctrl-val" id="vDe">0</span></div><input type="range" id="de" min="-30" max="60" value="0" aria-label="かすみの除去"></div>
+          <button class="reset" id="reset">RESET — 元に戻す</button>
+        </div>
+      </div>
+      <div class="lab-note">※ ブラウザで再現した簡易プレビューです。実際のLightroomは1色ずつ・明るさの帯ごとに、もっと精密に調整できます。</div>
+    </div>
+  </div>
+</section>
+
+<!-- PANEL DETAIL -->
+<section class="section" id="panels">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Deep Dive — パネル詳解</span>
+      <h2>各パネルを、もう一歩くわしく</h2>
+      <p>基本に慣れたら、ここから先は「使えると一段うまくなる」パネルたち。必要なものから少しずつどうぞ。</p>
+    </div>
+
+    <details class="acc reveal"><summary><span class="ico">▸</span>ヒストグラムの読み方<span class="en">Histogram</span></summary>
+      <div class="body"><p>画面右上の山のグラフ。<b>左が暗い部分・右が明るい部分</b>の量。左に張り付けば黒潰れ、右にあふれれば白飛びのサイン。</p><p>左右に偏らず端までなだらかに広がるのが「階調豊か」の目安です。</p><div class="mini">撮った直後にヒストグラムで明暗を判断する練習をすると上達が早いです。</div></div></details>
+
+    <details class="acc reveal"><summary><span class="ico">▸</span>トーンカーブ<span class="en">Tone Curve</span></summary>
+      <div class="body"><p>明るさを帯ごとに曲げる上級ツール。<b>ゆるいS字</b>でフィルム風コントラスト、右下を少し上げる「眠いブラック」でマット調に。</p><div class="mini">露光量で大枠 → カーブで微調整、が使い分けのコツ。</div></div></details>
+
+    <details class="acc reveal"><summary><span class="ico">▸</span>カラーミキサー（HSL）<span class="en">Color Mixer</span></summary>
+      <div class="body"><p>色を1色ずつ調整。<b>色相</b>＝色の方向／<b>彩度</b>＝鮮やかさ／<b>輝度</b>＝明るさ。</p><div class="mini">「青の輝度を下げて空を濃く」「オレンジの彩度を上げて夕日を強調」などピンポイントに。</div></div></details>
+
+    <details class="acc reveal"><summary><span class="ico">▸</span>ディテール（シャープ・ノイズ）<span class="en">Detail</span></summary>
+      <div class="body"><p><b>シャープ</b>は輪郭、<b>ノイズ軽減</b>はザラつき。最新の<b>AIノイズ除去</b>はディテールを保ったまま除去でき、夜のショー写真はこれ一発。</p><div class="mini">100%拡大で確認しながら、かけすぎを防止。</div></div></details>
+
+    <details class="acc reveal"><summary><span class="ico">▸</span>光学（レンズ補正）<span class="en">Optics</span></summary>
+      <div class="body"><p><b>「プロファイル補正を使用」</b>と<b>色収差を除去</b>にチェックを入れるだけで、ゆがみ・四隅の暗さ・色のにじみを自動補正。</p><div class="mini">最初に入れておく習慣がおすすめ。</div></div></details>
+
+    <details class="acc reveal"><summary><span class="ico">▸</span>ジオメトリ（ゆがみ・水平）<span class="en">Geometry</span></summary>
+      <div class="body"><p>Upright の<b>「自動」「水平」</b>で、傾いた水平やキャッスルの垂直をワンタッチ補正。</p><div class="mini">広角の建物の「ハの字すぼまり」がスッと整います。</div></div></details>
+
+    <details class="acc reveal"><summary><span class="ico">▸</span>効果（周辺光量・粒子）<span class="en">Effects</span></summary>
+      <div class="body"><p><b>周辺光量</b>をマイナスで四隅を暗くし主役へ視線誘導。<b>粒子</b>を少し足すとフィルム風。</p><div class="mini">かけすぎ厳禁。ほんの少しが上品。</div></div></details>
+
+    <details class="acc reveal"><summary><span class="ico">▸</span>カラーグレーディング<span class="en">Color Grading</span></summary>
+      <div class="body"><p>ハイライト・中間調・シャドウに別々の色を乗せる映画的演出。<b>シャドウに青・ハイライトに暖色</b>の「ティール&オレンジ」は王道。</p><div class="mini">仕上げの最後に少量だけ。</div></div></details>
+  </div>
+</section>
+
+<!-- MASKING -->
+<section class="section" id="mask">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Local Adjustments — マスク</span>
+      <h2>「ここだけ」直す部分補正</h2>
+      <p>空だけ・人だけ・料理だけ、と一部分にだけ補正をかける機能。使えると一段プロっぽい仕上がりに。</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal"><span class="tag">AI Select</span><h3>被写体・空・背景を選択</h3><p>クリックひとつでAIが範囲を自動認識。人物・服・髪・目なども個別に選べます。</p></div>
+      <div class="card reveal"><span class="tag">Linear Gradient</span><h3>線形グラデーション</h3><p>端から徐々に効く補正。明るすぎる空を上から自然に落とす定番。</p></div>
+      <div class="card reveal"><span class="tag">Radial Gradient</span><h3>円形グラデーション</h3><p>丸い範囲だけ補正。主役をスポットライトのように際立たせます。</p></div>
+      <div class="card reveal"><span class="tag">Brush</span><h3>ブラシ</h3><p>塗った場所だけ補正。細部やAI選択の取りこぼしの微調整に。</p></div>
+      <div class="card reveal"><span class="tag">Range Mask</span><h3>輝度・カラー範囲マスク</h3><p>「明るい部分だけ」「この色だけ」を精密に選択。</p></div>
+      <div class="card reveal"><span class="tag">Combine</span><h3>マスクの足し算・引き算</h3><p>「空を選択 → 太陽を引く」のように組み合わせて作り込めます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI -->
+<section class="section" id="ai">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">AI Tools — おまかせ</span>
+      <h2>面倒な作業はAIに任せる</h2>
+      <p>初心者ほど恩恵が大きい、手作業では難しいことをボタンひとつで。</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal"><span class="tag">Denoise</span><h3>AIノイズ除去</h3><p>暗所のザラつきをディテールを保ったまま除去。元はそのままに新DNGが作られ安心。</p></div>
+      <div class="card reveal"><span class="tag">Generative Remove</span><h3>生成AI削除</h3><p>写り込んだ人や物を選んで消すとAIが自然になじませる。反射除去にも対応。</p></div>
+      <div class="card reveal"><span class="tag">Adaptive Preset</span><h3>アダプティブプリセット</h3><p>写真の内容をAIが見て最適補正を自動適用。出発点に最適。</p></div>
+      <div class="card reveal"><span class="tag">Lens Blur</span><h3>レンズぼかし</h3><p>AIが奥行きを推定し、後から背景を一眼風にぼかせます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECIPES -->
+<section class="section" id="recipes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Recipes — シーン別レシピ</span>
+      <h2>お出かけ写真の、はじめの一手</h2>
+      <p>出発点の目安です。数値はそのまま当てず「どっちに動かすか」の方向感として。</p>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#6a5acd"></span><h3>夜のパレード・ショー</h3><span class="scene-tag">Night / High ISO</span></div>
+      <p class="intro">暗くノイズが出やすく、ライトは白飛びしがち。まずノイズ処理 → 明暗を整えます。</p>
+      <table>
+        <tr><td class="k">AIノイズ除去</td><td class="v">最初に適用 <b>(50前後)</b></td></tr>
+        <tr><td class="k">ハイライト</td><td class="v"><b>下げる</b>（光の玉のディテール残し）</td></tr>
+        <tr><td class="k">シャドウ</td><td class="v"><b>上げる</b>（暗部の人や建物を起こす）</td></tr>
+        <tr><td class="k">黒レベル</td><td class="v">少し<b>下げて</b>夜の締まりを残す</td></tr>
+        <tr><td class="k">自然な彩度</td><td class="v">やや<b>上げ</b>てネオンを鮮やかに</td></tr>
+      </table>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#e9a93c"></span><h3>ごはん・スイーツ</h3><span class="scene-tag">Food</span></div>
+      <p class="intro">「明るく・暖かく・みずみずしく」。寒色に転ぶと不味そうに見えるので色温度が鍵。</p>
+      <table>
+        <tr><td class="k">露光量</td><td class="v">やや<b>明るめ</b>に（重さを消す）</td></tr>
+        <tr><td class="k">色温度</td><td class="v"><b>暖かめ</b>へ（できたて感）</td></tr>
+        <tr><td class="k">テクスチャ</td><td class="v">少し<b>上げ</b>てシズル感</td></tr>
+        <tr><td class="k">円形グラデ</td><td class="v">主役の一皿だけ<b>明るく</b></td></tr>
+        <tr><td class="k">自然な彩度</td><td class="v">控えめに<b>上げ</b>る</td></tr>
+      </table>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#5fc6c0"></span><h3>パーク全景・風景</h3><span class="scene-tag">Landscape</span></div>
+      <p class="intro">広い空とキャッスル。抜けと色の深みで映えます。</p>
+      <table>
+        <tr><td class="k">プロファイル補正</td><td class="v">最初に<b>オン</b></td></tr>
+        <tr><td class="k">かすみの除去</td><td class="v">少し<b>上げ</b>てクリアに</td></tr>
+        <tr><td class="k">明瞭度</td><td class="v">やや<b>上げ</b>て建物くっきり</td></tr>
+        <tr><td class="k">青の輝度(HSL)</td><td class="v"><b>下げ</b>て空を濃く</td></tr>
+        <tr><td class="k">線形グラデ</td><td class="v">空の上部を<b>暗く</b>締める</td></tr>
+      </table>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#d98aa8"></span><h3>キャラクター・人物</h3><span class="scene-tag">Portrait</span></div>
+      <p class="intro">肌と表情が主役。明瞭度を上げすぎず、肌の色を守る。</p>
+      <table>
+        <tr><td class="k">明瞭度・テクスチャ</td><td class="v"><b>控えめ</b>に</td></tr>
+        <tr><td class="k">自然な彩度</td><td class="v">彩度より<b>こちら</b></td></tr>
+        <tr><td class="k">被写体マスク</td><td class="v">人物だけ少し<b>明るく</b></td></tr>
+        <tr><td class="k">オレンジの輝度(HSL)</td><td class="v">微<b>調整</b>で肌トーン</td></tr>
+        <tr><td class="k">背景</td><td class="v">レンズぼかし／周辺光量で主役を立てる</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="section" id="flow">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Pipeline — 全体の流れ</span>
+      <h2>1枚を仕上げる流れ</h2>
+      <p>現像は真ん中の工程。前後まで知っておくと迷子になりません。<a href="../reference/workflow.html">→ 共通ワークフロー</a></p>
+    </div>
+    <div class="flow reveal">
+      <div class="flow-step"><span class="n">STEP 1</span><h4>取り込む</h4><p>SDカードやiPhoneから。RAWで撮ると調整幅が広い。</p></div>
+      <div class="flow-step"><span class="n">STEP 2</span><h4>選ぶ・整理</h4><p>採用フラグ・星・カラーラベルで仕分け。</p></div>
+      <div class="flow-step"><span class="n">STEP 3</span><h4>現像する</h4><p>4ステップで調整。似た写真はコピペで時短。</p></div>
+      <div class="flow-step"><span class="n">STEP 4</span><h4>書き出す</h4><p>JPEG・<code>sRGB</code>。SNS用は長辺2048px前後に縮小。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SHORTCUTS -->
+<section class="section" id="keys">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Shortcuts — ショートカット</span>
+      <h2>覚えると速くなるキー</h2>
+      <p>Lightroom Classic基準。Macは <kbd>⌘</kbd>、Windowsは <kbd>Ctrl</kbd>。よく使う上から数個でOK。</p>
+    </div>
+    <div class="reveal">
+      <table class="keys">
+        <thead><tr><th>キー</th><th>できること</th></tr></thead>
+        <tbody>
+          <tr><td><kbd>D</kbd></td><td class="act">現像モジュールへ移動</td></tr>
+          <tr><td><kbd>G</kbd></td><td class="act">ライブラリ（一覧）へ戻る</td></tr>
+          <tr><td><kbd>R</kbd></td><td class="act">切り抜き・水平補正</td></tr>
+          <tr><td><kbd>Q</kbd></td><td class="act">スポット修復（写り込み消し）</td></tr>
+          <tr><td><kbd>\\</kbd></td><td class="act">補正前 ⇄ 補正後を切替</td></tr>
+          <tr><td><kbd>Y</kbd></td><td class="act">前後を左右に並べて比較</td></tr>
+          <tr><td><kbd>P</kbd> / <kbd>X</kbd></td><td class="act">採用 / 除外フラグ</td></tr>
+          <tr><td><kbd>1</kbd>〜<kbd>5</kbd></td><td class="act">星で評価</td></tr>
+          <tr><td><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>C</kbd> / <kbd>V</kbd></td><td class="act">現像設定をコピー / ペースト</td></tr>
+          <tr><td><kbd>⌘</kbd>+<kbd>Z</kbd></td><td class="act">操作を1つ取り消す</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="section" id="plans">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Start — はじめ方</span>
+      <h2>料金とおすすめプラン</h2>
+      <p>どちらも年間プランの月々払い・税込。7日間の無料体験あり。</p>
+    </div>
+    <div class="plans reveal">
+      <div class="plan feat">
+        <span class="pname">フォトプラン</span><span class="badge">おすすめ</span>
+        <div class="price">¥2,380<small> /月</small></div>
+        <ul><li>Lightroom + Lightroom Classic</li><li>Photoshop も使える</li><li>クラウドストレージ 1TB</li><li>AIレタッチの本命はPhotoshop側</li></ul>
+      </div>
+      <div class="plan">
+        <span class="pname">Lightroom 単体</span>
+        <div class="price">¥1,480<small> /月</small></div>
+        <ul><li>Lightroom + Lightroom Classic</li><li>Photoshop は使えない</li><li>クラウドストレージ 1TB</li><li>現像と整理だけで十分な人向け</li></ul>
+      </div>
+    </div>
+    <p class="note"><b>迷ったら</b>　まずフォトプランの無料体験でAI機能を試すのが安全。セール（年始・ブラックフライデー）で初年度半額のことも。</p>
+  </div>
+</section>
+
+<!-- TROUBLESHOOT -->
+<section class="section last" id="help">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Good to Know — つまずいたら</span>
+      <h2>はじめる前の3つの安心</h2>
+    </div>
+    <div class="help reveal">
+      <div class="help-item"><h3>RAWで撮っておく</h3><p>RAW（またはRAW+JPEG）に設定。調整幅が段違いで、AIノイズ除去も活きます。</p></div>
+      <div class="help-item"><h3>失敗しても大丈夫</h3><p>非破壊編集なので元データはそのまま。何度でもやり直せます。</p></div>
+      <div class="help-item"><h3>困ったら相談する</h3><p>「この写真をこういう雰囲気にしたい、どのスライダーを動かす?」とAIに聞けば手順が返ってきます。</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="eyebrow">Happy Editing</span>
+    まずは「01 ライトを整える」だけマスターすれば写真は見違えます。<br><a href="../index.html">↩ ハブに戻る</a>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  (function(){
+    var scene=document.getElementById('scene');
+    var hiOv=document.getElementById('hiOv');
+    var shOv=document.getElementById('shOv');
+    var tempOv=document.getElementById('tempOv');
+    var ids=['exp','hi','sh','con','sat','temp','de'];
+    var el={};
+    ids.forEach(function(id){el[id]=document.getElementById(id);});
+    function fmt(v){return (v>0?'+':'')+v;}
+    function apply(){
+      var e=+el.exp.value,hi=+el.hi.value,sh=+el.sh.value,c=+el.con.value,s=+el.sat.value,t=+el.temp.value,de=+el.de.value;
+      var brightness=1+e/100-de/600, contrast=1+c/100+de/200, saturate=1+s/100+de/200;
+      scene.style.filter='brightness('+brightness.toFixed(3)+') contrast('+contrast.toFixed(3)+') saturate('+saturate.toFixed(3)+')';
+      if(hi<=0){hiOv.style.mixBlendMode='multiply';hiOv.style.background='radial-gradient(62% 52% at 50% 26%,#000,transparent 72%)';hiOv.style.opacity=(Math.abs(hi)/100*0.85).toFixed(3);}
+      else{hiOv.style.mixBlendMode='screen';hiOv.style.background='radial-gradient(62% 52% at 50% 26%,#fff,transparent 72%)';hiOv.style.opacity=(hi/100*0.6).toFixed(3);}
+      if(sh>=0){shOv.style.mixBlendMode='screen';shOv.style.background='linear-gradient(0deg,#fff 0%,transparent 45%)';shOv.style.opacity=(sh/100*0.7).toFixed(3);}
+      else{shOv.style.mixBlendMode='multiply';shOv.style.background='linear-gradient(0deg,#000 0%,transparent 45%)';shOv.style.opacity=(Math.abs(sh)/100*0.7).toFixed(3);}
+      tempOv.style.background=t>=0?'#ff8c2e':'#2e7bff';
+      tempOv.style.opacity=(Math.abs(t)/100*0.7).toFixed(3);
+      document.getElementById('vExp').textContent=fmt(e);
+      document.getElementById('vHi').textContent=fmt(hi);
+      document.getElementById('vSh').textContent=fmt(sh);
+      document.getElementById('vCon').textContent=fmt(c);
+      document.getElementById('vSat').textContent=fmt(s);
+      document.getElementById('vTemp').textContent=fmt(t);
+      document.getElementById('vDe').textContent=fmt(de);
+    }
+    ids.forEach(function(id){el[id].addEventListener('input',apply);});
+    document.getElementById('reset').addEventListener('click',function(){ids.forEach(function(id){el[id].value=0;});apply();});
+    apply();
+  })();
+</script>
+</body>
+</html>
