@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EOS R8 写真の撮り方 — 撮影＆現像ハブ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* このページ固有：CSSで描く昼のパーク＋露出シミュレーター */
+  .scene{position:absolute;inset:0;transition:filter .12s ease}
+  .bg{position:absolute;inset:0;background:linear-gradient(#aedcf2 0%,#cfe9f2 42%,#bcd98f 42%,#9ec27a 70%,#7da856 100%)}
+  .tree{position:absolute;bottom:22%;border-radius:50% 50% 46% 46%/60% 60% 40% 40%}
+  .tree.l{left:4%;width:30%;height:46%;background:linear-gradient(#4f8a3e,#2c5022)}
+  .tree.r{right:2%;width:36%;height:54%;background:linear-gradient(#46823a,#26451d)}
+  .castle{position:absolute;left:50%;bottom:22%;transform:translateX(-50%);width:64px;height:78px;background:#cdb6d6;
+    clip-path:polygon(0 100%,0 44%,16% 44%,16% 22%,28% 22%,28% 8%,38% 0,46% 8%,46% 22%,54% 22%,54% 8%,62% 0,72% 8%,72% 22%,84% 22%,84% 44%,100% 44%,100% 100%)}
+  .bokeh{position:absolute;inset:0;transition:filter .12s ease,transform .12s ease}
+  .dot{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,252,225,.95),rgba(255,238,160,.55) 58%,rgba(255,235,150,0) 74%)}
+  .subject{position:absolute;left:50%;bottom:5%;transform:translateX(-50%);width:74px;height:46%;transition:filter .12s ease}
+  .subject .head{position:absolute;left:50%;top:0;transform:translateX(-50%);width:30px;height:30px;border-radius:50%;background:#d98a5a}
+  .subject .body{position:absolute;left:50%;top:26px;transform:translateX(-50%);width:62px;height:74%;border-radius:26px 26px 12px 12px;background:linear-gradient(#c0506a,#8d3550)}
+  .grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:0;transition:opacity .12s ease;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px}
+  .verdicts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line)}
+  .vd{background:var(--panel);padding:11px 8px;text-align:center}
+  .vd .lab{font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:3px}
+  .vd .val{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:.95rem}
+  .v-good{color:var(--teal)} .v-warn{color:var(--accent)} .v-bad{color:#e8736b}
+</style>
+</head>
+<body data-page="eos-r8" class="theme-r8">
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">PHOTO HUB</a>
+    <a class="home" href="../index.html">↩ ホーム</a>
+    <a href="#triangle">露出の三角形</a>
+    <a href="#play">露出を触る</a>
+    <a href="#modes">モード</a>
+    <a href="#af">ピント</a>
+    <a href="#compose">構図</a>
+    <a href="#recipes">シーン別</a>
+    <a href="operate.html">操作</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <span class="eyebrow hero-eyebrow">Canon EOS R8 — 写真の撮り方</span>
+    <h1>3つの数字で、<span class="accent">写真は決まる</span>。</h1>
+    <p class="lead">F値・シャッタースピード・ISO。この3つの関係（露出の三角形）さえ体で覚えれば、どんな場面でも狙った一枚に近づけます。まずは下のシミュレーターで、動かして感じてみましょう。</p>
+    <div class="hero-meta">
+      <span class="chip">入口は Av（絞り優先）</span>
+      <span class="chip">被写体検出＋瞳AF</span>
+      <span class="chip">RAWで撮る</span>
+    </div>
+  </div>
+</header>
+
+<!-- TRIANGLE -->
+<section class="section" id="triangle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Exposure Triangle — 露出の三角形</span>
+      <h2>明るさは、3つの合わせ技</h2>
+      <p>同じ明るさでも、3つのどれで稼ぐかで「ボケ・ブレ・ノイズ」が変わります。これがカメラの面白さの核心です。</p>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="card"><span class="tag">Aperture / F値</span><h3>絞り＝ボケ</h3><p>レンズの穴の大きさ。<b>F値が小さい</b>ほど光が入って明るく、背景が大きくボケます。F値が大きいと隅までシャープ。</p></div>
+      <div class="card"><span class="tag">Shutter / SS</span><h3>シャッター＝ブレ</h3><p>開いている時間。<b>速い</b>と動きを止め、<b>遅い</b>と光をたくさん集める代わりに動きがブレます。</p></div>
+      <div class="card"><span class="tag">ISO</span><h3>ISO＝ノイズ</h3><p>光への敏感さ。<b>上げる</b>と暗所でも明るく撮れますが、上げすぎるとザラつき（ノイズ）が増えます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYGROUND -->
+<section class="section" id="play">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Try It — 露出を触る</span>
+      <h2>動かして、関係を体感する</h2>
+      <p>昼のパーク風サンプルです。3つのスライダーを動かすと「明るさ・ボケ・ブレ・ノイズ」がどう変わるか、下の判定で確かめられます。明るさを保ったまま1つを動かし、別ので取り戻す——が露出の練習です。</p>
+    </div>
+
+    <div class="lab reveal">
+      <div class="lab-grid">
+        <div class="stage">
+          <div class="scene" id="scene">
+            <div class="bg"></div>
+            <div class="tree l"></div><div class="tree r"></div>
+            <div class="castle"></div>
+            <div class="bokeh" id="bokeh">
+              <div class="dot" style="left:18%;top:20%;width:18px;height:18px"></div>
+              <div class="dot" style="left:30%;top:34%;width:13px;height:13px"></div>
+              <div class="dot" style="left:62%;top:18%;width:20px;height:20px"></div>
+              <div class="dot" style="left:74%;top:38%;width:14px;height:14px"></div>
+              <div class="dot" style="left:48%;top:12%;width:11px;height:11px"></div>
+              <div class="dot" style="left:84%;top:26%;width:16px;height:16px"></div>
+              <div class="dot" style="left:8%;top:40%;width:12px;height:12px"></div>
+            </div>
+            <div class="subject" id="subject"><div class="head"></div><div class="body"></div></div>
+          </div>
+          <div class="grain" id="grain"></div>
+        </div>
+        <div class="controls">
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">F値（絞り）<span>ボケ ⇄ シャープ</span></span><span class="ctrl-val" id="vAp">f/5.6</span></div><input type="range" id="ap" min="0" max="6" step="1" value="3" aria-label="F値"></div>
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">シャッター<span>止める ⇄ 集める</span></span><span class="ctrl-val" id="vSs">1/125</span></div><input type="range" id="ss" min="0" max="7" step="1" value="3" aria-label="シャッタースピード"></div>
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">ISO感度<span>暗所 ⇄ ノイズ</span></span><span class="ctrl-val" id="vIso">400</span></div><input type="range" id="iso" min="0" max="7" step="1" value="2" aria-label="ISO感度"></div>
+          <button class="reset" id="reset">RESET — 適正露出に戻す</button>
+        </div>
+      </div>
+      <div class="verdicts" id="verdicts">
+        <div class="vd"><span class="lab">明るさ</span><span class="val" id="jExp">適正</span></div>
+        <div class="vd"><span class="lab">ボケ</span><span class="val" id="jAp">中</span></div>
+        <div class="vd"><span class="lab">ブレ</span><span class="val" id="jSs">止まる</span></div>
+        <div class="vd"><span class="lab">ノイズ</span><span class="val" id="jIso">少</span></div>
+      </div>
+      <div class="lab-note">※ 関係を体感するための簡易プレビューです。実際の見え方はレンズ・被写体・光で変わります。</div>
+    </div>
+
+    <div class="tip reveal"><b>練習のコツ</b>　まず <b>Av（絞り優先）</b> で F値だけ決め、明るさはカメラに任せる。慣れたら「F値を下げてボケを足し、その明るさをSSかISOで取り戻す」を意識すると、3つの関係が腑に落ちます。</div>
+  </div>
+</section>
+
+<!-- MODES -->
+<section class="section" id="modes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Modes — モードの選び方</span>
+      <h2>まずは Av から始める</h2>
+      <p>全部をマニュアルで決める必要はありません。「何を自分で決めたいか」でモードを選びます。</p>
+    </div>
+    <div class="grid reveal">
+      <div class="card"><span class="tag">Av（絞り優先）★</span><h3>ボケを決めたい</h3><p>F値だけ自分で決め、明るさはカメラ任せ。<b>初心者の入口はこれ</b>。ポートレートも風景もまず Av。</p></div>
+      <div class="card"><span class="tag">Tv（SS優先）</span><h3>動きを止めたい／流したい</h3><p>シャッタースピードを自分で決める。スポーツ・水・乗り物など動きものに。</p></div>
+      <div class="card"><span class="tag">P（プログラム）</span><h3>とにかく素早く</h3><p>明るさはお任せでスナップ向き。露出補正だけ気にすればOK。</p></div>
+      <div class="card"><span class="tag">M（マニュアル）</span><h3>全部自分で決める</h3><p>夜景や物撮りなど、明るさを完全に固定したい時。ISOオートと併用も便利。</p></div>
+    </div>
+    <div class="tip reveal"><b>露出補正</b>　P/Av/Tvでは、背面ダイヤルで <b>＋／−</b> 補正。雪や白い壁で暗くなったら＋、夜や黒い背景で明るすぎたら−。</div>
+  </div>
+</section>
+
+<!-- AF -->
+<section class="section" id="af">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Focus — ピント・被写体検出AF</span>
+      <h2>R8の得意技、賢いAF</h2>
+      <p>被写体を自動で見つけて追い続けるのがR8の強み。設定を合わせれば歩留まりが一気に上がります。</p>
+    </div>
+    <div class="grid reveal">
+      <div class="card"><span class="tag">Subject Detect</span><h3>被写体検出</h3><p>人物・動物・乗り物から選択。狙う対象に合わせると、瞳や顔・体を自動で捕捉します。</p></div>
+      <div class="card"><span class="tag">Eye AF</span><h3>瞳AF</h3><p>人物・動物の瞳にピンポイントで合焦。ポートレートやペットで失敗が激減。</p></div>
+      <div class="card"><span class="tag">One Shot</span><h3>ワンショットAF</h3><p>止まっている被写体に。半押しでピントを固定して構図を決める。</p></div>
+      <div class="card"><span class="tag">Servo</span><h3>サーボAF</h3><p>動く被写体を追い続ける。子ども・パレード・乗り物はこちら。</p></div>
+    </div>
+    <div class="tip reveal"><b>使い分け</b>　迷ったら「被写体検出＝人物／瞳AF オン／動くならサーボ」。あとはタッチやマルチコントローラーで狙いを指定するだけ。<a href="operate.html">→ 設定の場所は操作ページ</a></div>
+  </div>
+</section>
+
+<!-- COMPOSE -->
+<section class="section" id="compose">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Composition — 構図の基本</span>
+      <h2>置き方を少し意識する</h2>
+      <p>難しい理論より、まずこの4つ。意識するだけで「なんとなく良い」写真になります。</p>
+    </div>
+    <div class="grid reveal">
+      <div class="card"><span class="tag">Rule of Thirds</span><h3>三分割</h3><p>画面を9分割した線・交点に主役を置く。ど真ん中より動きと余白が出ます（グリッド表示を活用）。</p></div>
+      <div class="card"><span class="tag">Centered</span><h3>日の丸（あえて中央）</h3><p>主役を堂々と中央に。シンプルで力強い。背景がうるさい時にも有効。</p></div>
+      <div class="card"><span class="tag">Foreground</span><h3>前ボケ</h3><p>手前に花や葉を入れてぼかす。奥行きと立体感、やわらかさが出ます（F値小さめで）。</p></div>
+      <div class="card"><span class="tag">Level</span><h3>水平を出す</h3><p>地平線・建物の傾きは厳禁。電子水準器やグリッドで真っ直ぐに。後からでも直せます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECIPES -->
+<section class="section last" id="recipes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Recipes — シーン別レシピ</span>
+      <h2>場面ごとの、はじめの設定</h2>
+      <p>出発点の目安です。数値は固定ではなく「どっちに振るか」の方向感として使ってください。</p>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#e9a93c"></span><h3>パーク・日中スナップ</h3><span class="scene-tag">Daylight</span></div>
+      <p class="intro">光が十分。ボケを楽しみつつ、失敗の少ない設定で。</p>
+      <table>
+        <tr><td class="k">モード</td><td class="v"><b>Av</b>（絞り優先）</td></tr>
+        <tr><td class="k">F値</td><td class="v">背景をぼかすなら<b>f/2.8〜4</b>、隅まで写すなら<b>f/8</b></td></tr>
+        <tr><td class="k">ISO</td><td class="v"><b>オート</b>（上限800〜1600目安）</td></tr>
+        <tr><td class="k">AF</td><td class="v">被写体検出＋<b>瞳AF</b>／止まってればワンショット</td></tr>
+      </table>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#6a5acd"></span><h3>夜景・イルミネーション</h3><span class="scene-tag">Night</span></div>
+      <p class="intro">手ブレと白飛びが敵。R8はIBISが無いので、固定とSSに注意。</p>
+      <table>
+        <tr><td class="k">構え</td><td class="v"><b>三脚／柵に固定</b>（IBIS非搭載のため重要）</td></tr>
+        <tr><td class="k">モード</td><td class="v"><b>Av</b> or <b>M</b>。F値は<b>f/4〜8</b></td></tr>
+        <tr><td class="k">ISO</td><td class="v">固定なら<b>低ISO</b>、手持ちなら上げて<b>SS稼ぐ</b></td></tr>
+        <tr><td class="k">仕上げ</td><td class="v"><b>RAW</b>で撮ってシャドウを起こす</td></tr>
+      </table>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#5fc6c0"></span><h3>料理・テーブル</h3><span class="scene-tag">Food</span></div>
+      <p class="intro">近寄って、明るく暖かく。寄れる距離はレンズ次第。</p>
+      <table>
+        <tr><td class="k">F値</td><td class="v"><b>f/2.8〜5.6</b>（全体を見せたいなら絞る）</td></tr>
+        <tr><td class="k">露出補正</td><td class="v"><b>＋</b>に振って明るく軽やかに</td></tr>
+        <tr><td class="k">角度・光</td><td class="v">斜め45°or真上。<b>窓の自然光</b>を活かす</td></tr>
+        <tr><td class="k">仕上げ</td><td class="v"><a href="../lightroom/index.html">現像</a>で色温度を暖かめに</td></tr>
+      </table>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#d98aa8"></span><h3>ポートレート・人物</h3><span class="scene-tag">Portrait</span></div>
+      <p class="intro">瞳にピント、背景はとろり。主役を浮かび上がらせます。</p>
+      <table>
+        <tr><td class="k">モード</td><td class="v"><b>Av</b>、F値<b>f/1.8〜2.8</b></td></tr>
+        <tr><td class="k">AF</td><td class="v">被写体検出=人物／<b>瞳AF オン</b></td></tr>
+        <tr><td class="k">SS</td><td class="v">手ブレ・被写体ブレ防止に<b>1/200以上</b>目安</td></tr>
+        <tr><td class="k">背景</td><td class="v">離れた背景＋望遠寄りで<b>ボケ増し</b></td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="eyebrow">Make the Shot</span>
+    露出の三角形が体に入れば、あとは枚数。たくさん撮って、良い数枚を <a href="../lightroom/index.html">現像</a> で磨きましょう。<br><a href="operate.html">→ R8の操作・使い方</a> ／ <a href="../index.html">↩ ハブに戻る</a>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  (function(){
+    var AP =[1.8,2.8,4,5.6,8,11,16];
+    var SS =[1000,500,250,125,60,30,15,8];   // 1/x
+    var ISO=[100,200,400,800,1600,3200,6400,12800];
+    var scene=document.getElementById('scene');
+    var bokeh=document.getElementById('bokeh');
+    var subject=document.getElementById('subject');
+    var grain=document.getElementById('grain');
+    var ap=document.getElementById('ap'), ss=document.getElementById('ss'), iso=document.getElementById('iso');
+    function setVal(el,cls,txt){ el.textContent=txt; el.className='val '+cls; }
+    function apply(){
+      var ai=+ap.value, si=+ss.value, ii=+iso.value;
+      // 表示値
+      document.getElementById('vAp').textContent='f/'+AP[ai];
+      document.getElementById('vSs').textContent='1/'+SS[si];
+      document.getElementById('vIso').textContent=''+ISO[ii];
+      // 露出（基準: f5.6=idx3 / 1/125=idx3 / ISO400=idx2 を適正=0EV）
+      var ev=(3-ai)+(si-3)+(ii-2);
+      var brightness=Math.max(0.35,Math.min(1.9,1+ev*0.13));
+      scene.style.filter='brightness('+brightness.toFixed(3)+')';
+      // ボケ（F値小さいほど背景ボケ大）
+      var bk=Math.max(0,(3.2-ai))*2.6;
+      bokeh.style.filter='blur('+bk.toFixed(2)+'px)';
+      bokeh.style.transform='scale('+(1+Math.max(0,(3.2-ai))*0.05).toFixed(3)+')';
+      // ブレ（SS遅いほど被写体ブレ）
+      var mb=Math.max(0,(si-3))*1.9;
+      subject.style.filter='blur('+mb.toFixed(2)+'px)';
+      // ノイズ（ISO高いほどザラつき）
+      grain.style.opacity=Math.max(0,(ii-2))*0.06;
+      // 判定
+      setVal(document.getElementById('jExp'),
+        Math.abs(ev)<=1?'v-good':(Math.abs(ev)<=2?'v-warn':'v-bad'),
+        Math.abs(ev)<=1?'適正':(ev>0?'明るすぎ':'暗すぎ'));
+      setVal(document.getElementById('jAp'),
+        ai<=1?'v-warn':(ai<=3?'v-good':'v-good'),
+        ai<=1?'大':(ai<=3?'中':'小'));
+      setVal(document.getElementById('jSs'),
+        si<=3?'v-good':(si<=5?'v-warn':'v-bad'),
+        si<=3?'止まる':(si<=5?'ややブレ':'ブレる'));
+      setVal(document.getElementById('jIso'),
+        ii<=2?'v-good':(ii<=4?'v-warn':'v-bad'),
+        ii<=2?'少':(ii<=4?'中':'多'));
+    }
+    [ap,ss,iso].forEach(function(el){ el.addEventListener('input',apply); });
+    document.getElementById('reset').addEventListener('click',function(){
+      ap.value=3; ss.value=3; iso.value=2; apply();
+    });
+    apply();
+  })();
+</script>
+</body>
+</html>
