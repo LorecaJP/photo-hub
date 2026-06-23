@@ -47,3 +47,10 @@
     });
   }
 })();
+
+/* ---- Service Worker 登録（PWA：オフライン対応・インストール可能化） ---- */
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/photo-hub/sw.js').catch(function(){});
+  });
+}
