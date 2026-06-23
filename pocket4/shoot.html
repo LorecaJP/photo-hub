@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osmo Pocket 4 写真・動画の撮り方 — 撮影＆現像ハブ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* このページ固有：fps×シャッター角度シミュレーター */
+  .scene{position:absolute;inset:0;background:linear-gradient(#12222b,#16323a)}
+  .floor{position:absolute;left:0;right:0;bottom:0;height:26%;background:linear-gradient(#1c3d44,#0d1d22)}
+  .pillar{position:absolute;bottom:26%;width:12px;background:#2a5a63;opacity:.55;border-radius:3px 3px 0 0}
+  .ball{position:absolute;left:50%;bottom:30%;width:46px;height:46px;border-radius:50%;
+    background:radial-gradient(circle at 34% 32%,#bdeae6,#34b3aa 58%,#177169);
+    animation:run 1.6s steps(6,end) infinite alternate;will-change:transform;transition:filter .12s ease}
+  @keyframes run{from{transform:translate(calc(-50% - 122px),0)}to{transform:translate(calc(-50% + 122px),0)}}
+  .verdicts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line)}
+  .vd{background:var(--panel);padding:11px 8px;text-align:center}
+  .vd .lab{font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:3px}
+  .vd .val{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:.95rem}
+  .v-good{color:var(--teal)} .v-warn{color:var(--accent2)} .v-bad{color:#e8a06b}
+  @media (prefers-reduced-motion:reduce){ .ball{animation:none} }
+</style>
+</head>
+<body data-page="pocket4" class="theme-pocket">
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">PHOTO HUB</a>
+    <a class="home" href="../index.html">↩ ホーム</a>
+    <a href="#gimbal">ジンバル</a>
+    <a href="#play">fpsを触る</a>
+    <a href="#res">解像度</a>
+    <a href="#color">色・D-Log</a>
+    <a href="#lapse">ラプス</a>
+    <a href="#recipes">シーン別</a>
+    <a href="operate.html">操作</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <span class="eyebrow hero-eyebrow">DJI Osmo Pocket 4 — 撮り方</span>
+    <h1>歩いても、<span class="accent">ヌルッと</span>撮れる。</h1>
+    <p class="lead">手ブレしないジンバルが主役。あとは「fpsとシャッター角度」の関係を押さえれば、なめらかなスローも、シャキッとした映像も自在です。まずは下のシミュレーターで質感の違いを体感しましょう。</p>
+    <div class="hero-meta">
+      <span class="chip">3軸ジンバルで手ブレ激減</span>
+      <span class="chip">ActiveTrackで追尾</span>
+      <span class="chip">4K120/240スロー</span>
+    </div>
+  </div>
+</header>
+
+<!-- GIMBAL / SHOTS -->
+<section class="section" id="gimbal">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Gimbal Moves — ジンバルの活かし方</span>
+      <h2>カメラを「動かす」のが見せ場</h2>
+      <p>一眼と違い、動きながら撮ってこそ。基本の歩き姿勢とショットを覚えれば、ただの記録が映像作品に変わります。</p>
+    </div>
+    <div class="grid reveal">
+      <div class="card"><span class="tag">Walk</span><h3>歩き撮りの姿勢</h3><p>脇を締め、ひざを軽く曲げて<b>すり足</b>で。上下動を抑えると、ジンバルが横の揺れを消してヌルヌルに。</p></div>
+      <div class="card"><span class="tag">Track</span><h3>ActiveTrackで追尾</h3><p>被写体をタップで自動追尾。ひとり撮りや歩きレポートでも、カメラが勝手に主役を捉え続けます。</p></div>
+      <div class="card"><span class="tag">Reveal</span><h3>リビール</h3><p>手前の木や壁から、すっと被写体を「現す」動き。導入カットに強い。</p></div>
+      <div class="card"><span class="tag">Low / Pan</span><h3>ローアングル・パン</h3><p>地面すれすれで迫力を、ゆっくりパンで風景を見せる。プリセットボタンで再センタリングしながら。</p></div>
+    </div>
+    <div class="tip reveal"><b>自撮り</b>　画面を自分に向ければ自撮りモード。ActiveTrackで自分を追わせれば、歩きながらのVlogもブレずに撮れます。</div>
+  </div>
+</section>
+
+<!-- PLAYGROUND -->
+<section class="section" id="play">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Try It — fpsとシャッター角度</span>
+      <h2>スローと質感の関係を触る</h2>
+      <p>動くボールのサンプルです。<b>フレームレート（fps）</b>でスローの度合い・なめらかさが、<b>シャッター角度</b>で「ブレ感（質感）」が変わります。基本は <b>180°ルール</b>（自然なブレ）。動かして確かめましょう。</p>
+    </div>
+
+    <div class="lab reveal">
+      <div class="lab-grid">
+        <div class="stage">
+          <div class="scene" id="scene">
+            <div class="pillar" style="left:16%;height:30%"></div>
+            <div class="pillar" style="left:38%;height:22%"></div>
+            <div class="pillar" style="left:62%;height:34%"></div>
+            <div class="pillar" style="left:82%;height:24%"></div>
+            <div class="floor"></div>
+            <div class="ball" id="ball"></div>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">フレームレート<span>なめらか ⇄ スロー</span></span><span class="ctrl-val" id="vFps">30fps</span></div><input type="range" id="fps" min="0" max="4" step="1" value="1" aria-label="フレームレート"></div>
+          <div class="ctrl"><div class="ctrl-top"><span class="ctrl-label">シャッター角度<span>シャキッ ⇄ 残像</span></span><span class="ctrl-val" id="vAng">180°</span></div><input type="range" id="ang" min="0" max="4" step="1" value="2" aria-label="シャッター角度"></div>
+          <button class="reset" id="reset">RESET — 30fps / 180°に戻す</button>
+        </div>
+      </div>
+      <div class="verdicts">
+        <div class="vd"><span class="lab">スロー</span><span class="val" id="jFps">標準</span></div>
+        <div class="vd"><span class="lab">質感</span><span class="val" id="jAng">自然</span></div>
+        <div class="vd"><span class="lab">推奨SS</span><span class="val" id="jSs">1/60</span></div>
+        <div class="vd"><span class="lab">180°ルール</span><span class="val" id="jRule">◎ 準拠</span></div>
+      </div>
+      <div class="lab-note">※ ブラウザで再現した簡易プレビューです。実際のなめらかさは再生環境や被写体でも変わります。</div>
+    </div>
+
+    <div class="tip reveal"><b>180°ルールとは</b>　シャッタースピードを「fpsの約2倍」にすると、人の目に自然なブレ量になる目安。<b>30fpsなら1/60</b>、60fpsなら1/125。スローを撮るなら高fps（120/240）で回し、編集で遅くします。</div>
+  </div>
+</section>
+
+<!-- RESOLUTION -->
+<section class="section" id="res">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Resolution & FPS — 解像度の使い分け</span>
+      <h2>fpsは「目的」で選ぶ</h2>
+      <p>高ければ良いわけではありません。何に使う映像かで決めます。</p>
+    </div>
+    <div class="grid reveal">
+      <div class="card"><span class="tag">4K 30</span><h3>標準・万能</h3><p>記録・Vlogの基本。容量と画質のバランスが良く、迷ったらこれ。</p></div>
+      <div class="card"><span class="tag">4K 60</span><h3>なめらか＆軽スロー</h3><p>動きの多い場面をなめらかに。2倍までの自然なスローにも使える。</p></div>
+      <div class="card"><span class="tag">4K 120</span><h3>本格スロー（4x）</h3><p>水しぶき・ジャンプなど決定的瞬間を引き伸ばす。明るい場所向き。</p></div>
+      <div class="card"><span class="tag">4K 240</span><h3>超スロー（8x）</h3><p>さらにドラマチックに。光量が必要で、ディテールはやや落ちることも。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section class="section" id="color">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Color — 色・D-Log</span>
+      <h2>そのまま派か、作り込み派か</h2>
+      <p>色を「撮って出し」で完結させたいか、あとで自由に作りたいかで選びます。</p>
+    </div>
+    <div class="two reveal">
+      <div class="obox">
+        <span class="meta">Normal / Film</span>
+        <h3>ノーマル・フィルムトーン</h3>
+        <p>撮ってすぐ使える普通の色。フィルムトーン系を選べば、編集なしでも雰囲気のある画に。SNSにポンと上げたい人向け。</p>
+      </div>
+      <div class="obox">
+        <span class="meta">D-Log</span>
+        <h3>D-Log（あとで色を作る）</h3>
+        <p>わざと眠く記録して階調を残す方式。編集で自分好みに色を作り込めます。明暗差の大きい場面に強い反面、ひと手間必要。</p>
+      </div>
+    </div>
+    <div class="tip reveal"><b>はじめは</b>　まずノーマル／フィルムトーンで十分。慣れて「もっと色を作りたい」と思ったらD-Logへ。<a href="../reference/glossary.html">→ Logとは</a></div>
+  </div>
+</section>
+
+<!-- LAPSE -->
+<section class="section" id="lapse">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Lapse — 時間を縮める</span>
+      <h2>タイムラプス3兄弟</h2>
+      <p>長い時間をギュッと短く。三脚や安定した場所に置くと、より滑らかになります。</p>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="card"><span class="tag">Timelapse</span><h3>タイムラプス</h3><p>固定して時間を圧縮。流れる雲・夕焼け・人の往来に。置きっぱなしでOK。</p></div>
+      <div class="card"><span class="tag">Hyperlapse</span><h3>ハイパーラプス</h3><p>歩きながらのタイムラプス。ジンバル＋手ブレ補正で移動感のある映像に。</p></div>
+      <div class="card"><span class="tag">Motionlapse</span><h3>モーションラプス</h3><p>カメラをゆっくり動かしながら。パンやティルトを加えて立体的に。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECIPES -->
+<section class="section last" id="recipes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Recipes — シーン別レシピ</span>
+      <h2>場面ごとの、はじめの設定</h2>
+      <p>出発点の目安です。光や被写体で調整してください。</p>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#5fc6c0"></span><h3>パレード・ショー</h3><span class="scene-tag">Show</span></div>
+      <p class="intro">動きと光が派手。なめらかさと、後の余地を意識。</p>
+      <table>
+        <tr><td class="k">解像度/fps</td><td class="v"><b>4K60</b>（なめらか＋軽スロー）</td></tr>
+        <tr><td class="k">シャッター角度</td><td class="v"><b>180°</b>（自然なブレ）</td></tr>
+        <tr><td class="k">ジンバル</td><td class="v"><b>フォロー</b>＋ActiveTrackで主役追尾</td></tr>
+        <tr><td class="k">音</td><td class="v"><a href="../mic-mini/index.html">Mic Mini</a>で歓声に負けない声を</td></tr>
+      </table>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#e9a93c"></span><h3>食事・カフェVlog</h3><span class="scene-tag">Food Vlog</span></div>
+      <p class="intro">手元と表情を、明るく楽しく。寄り引きでリズムを。</p>
+      <table>
+        <tr><td class="k">解像度/fps</td><td class="v"><b>4K30</b>（標準・容量も◎）</td></tr>
+        <tr><td class="k">画</td><td class="v">窓の<b>自然光</b>／フィルムトーンで雰囲気</td></tr>
+        <tr><td class="k">ショット</td><td class="v">料理に<b>リビール</b>、自撮りでトーク</td></tr>
+        <tr><td class="k">音</td><td class="v"><b>Mic Mini</b>を胸に。店内ノイズ対策</td></tr>
+      </table>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#6a5acd"></span><h3>移動・旅の記録</h3><span class="scene-tag">Travel</span></div>
+      <p class="intro">歩き・乗り物の移動感を活かす。時間圧縮も効果的。</p>
+      <table>
+        <tr><td class="k">基本</td><td class="v"><b>4K30</b>＋歩き撮り（すり足）</td></tr>
+        <tr><td class="k">演出</td><td class="v"><b>ハイパーラプス</b>で移動をダイジェスト</td></tr>
+        <tr><td class="k">ジンバル</td><td class="v"><b>フォロー</b>。広い景色は<b>固定</b>でパン</td></tr>
+        <tr><td class="k">決定的瞬間</td><td class="v"><b>4K120</b>でスロー差し込み</td></tr>
+      </table>
+    </div>
+
+    <div class="recipe reveal">
+      <div class="recipe-head"><span class="dot" style="background:#d98aa8"></span><h3>自撮りトーク</h3><span class="scene-tag">Selfie</span></div>
+      <p class="intro">画面を自分へ。手ブレせず、声をクリアに。</p>
+      <table>
+        <tr><td class="k">モード</td><td class="v">自撮り＋<b>ActiveTrack</b>で自動追尾</td></tr>
+        <tr><td class="k">解像度/fps</td><td class="v"><b>4K30</b>、シャッター角度<b>180°</b></td></tr>
+        <tr><td class="k">距離</td><td class="v">腕を伸ばし顔は<b>画面やや上</b>に</td></tr>
+        <tr><td class="k">音</td><td class="v"><b>Mic Mini</b>併用で屋外でも明瞭</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="eyebrow">Roll It</span>
+    ジンバルで動き、fpsと角度で質感を操る。あとはたくさん回して、良い画を選ぶだけ。<br><a href="operate.html">→ Pocket 4の操作・使い方</a> ／ <a href="../index.html">↩ ハブに戻る</a>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  (function(){
+    var FPS=[24,30,60,120,240], ANG=[45,90,180,270,360];
+    var ball=document.getElementById('ball');
+    var fps=document.getElementById('fps'), ang=document.getElementById('ang');
+    function setVal(el,cls,txt){ el.textContent=txt; el.className='val '+cls; }
+    function apply(){
+      var fi=+fps.value, gi=+ang.value;
+      var f=FPS[fi], a=ANG[gi];
+      document.getElementById('vFps').textContent=f+'fps';
+      document.getElementById('vAng').textContent=a+'°';
+      var ss=Math.round(f*360/a);
+      // アニメ：fpsで再生の遅さ（スロー感）＋ステップ数（なめらかさ）
+      var dur=1.6*(f/30);
+      var stepsN=Math.max(4,Math.round(f/5));
+      ball.style.animationDuration=dur.toFixed(2)+'s';
+      ball.style.animationTimingFunction='steps('+stepsN+',end)';
+      // シャッター角度でモーションブラー
+      ball.style.filter='blur('+(a/360*9).toFixed(2)+'px)';
+      // 判定
+      setVal(document.getElementById('jFps'),
+        fi<=1?'v-good':'v-warn',
+        fi<=1?'標準':(fi===2?'なめらか':(fi===3?'スロー4x':'超スロー8x')));
+      setVal(document.getElementById('jAng'),
+        gi===2?'v-good':(gi<2?'v-warn':'v-bad'),
+        gi<=1?'シャキッ':(gi===2?'自然':'残像'));
+      document.getElementById('jSs').textContent='1/'+ss;
+      setVal(document.getElementById('jRule'),
+        gi===2?'v-good':'v-warn',
+        gi===2?'◎ 準拠':'外れ');
+    }
+    [fps,ang].forEach(function(el){ el.addEventListener('input',apply); });
+    document.getElementById('reset').addEventListener('click',function(){
+      fps.value=1; ang.value=2; apply();
+    });
+    apply();
+  })();
+</script>
+</body>
+</html>
