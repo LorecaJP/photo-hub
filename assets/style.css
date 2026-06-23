@@ -245,3 +245,17 @@ kbd{font-family:"Space Mono",monospace;font-size:.8rem;background:var(--panel-2)
   .acc .body .mini{background:rgba(233,169,60,.08)}
   .plan.feat{background:var(--panel)}
 }
+
+/* =========================================================
+   PWA / iOS セーフエリア対応
+   viewport-fit=cover の全画面表示でも、固定ナビをステータスバー
+   （時計・バッテリー・ノッチ／Dynamic Island）の下へ確実に逃がす。
+   env(safe-area-inset-*) は通常ブラウザでは 0 なので影響なし。
+   ========================================================= */
+html{background:var(--bg)}                         /* オーバースクロール時も暗く */
+.nav{padding-top:env(safe-area-inset-top, 0px)}    /* ← 時計と被らせない核心 */
+.wrap{
+  padding-left:max(22px, env(safe-area-inset-left, 0px));
+  padding-right:max(22px, env(safe-area-inset-right, 0px));
+}
+.footer{padding-bottom:calc(70px + env(safe-area-inset-bottom, 0px))} /* ホームインジケータ回避 */

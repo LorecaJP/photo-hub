@@ -1,0 +1,19 @@
+{
+  "name": "撮影＆現像ハブ",
+  "short_name": "Photo Hub",
+  "description": "自分の機材の撮り方・操作・用語を一箇所にまとめた個人用ガイド。",
+  "lang": "ja",
+  "dir": "ltr",
+  "id": "/photo-hub/",
+  "start_url": "/photo-hub/index.html",
+  "scope": "/photo-hub/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#191b1f",
+  "theme_color": "#191b1f",
+  "icons": [
+    { "src": "/photo-hub/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/photo-hub/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/photo-hub/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
