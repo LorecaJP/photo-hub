@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>写真・動画 用語集 — 撮影＆現像ハブ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* このページ固有：検索バーとカテゴリ見出し */
+  .searchwrap{position:sticky;top:56px;z-index:40;background:rgba(25,27,31,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:15px 0}
+  .searchwrap .wrap{position:relative}
+  #glossarySearch{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 44px 13px 16px;color:var(--ink);font-family:"Noto Sans JP",sans-serif;font-size:.95rem;outline:none;transition:border-color .2s}
+  #glossarySearch:focus{border-color:var(--accent)}
+  #glossarySearch::placeholder{color:var(--ink-faint)}
+  .searchwrap .ico{position:absolute;right:38px;top:50%;transform:translateY(-50%);color:var(--ink-faint);font-family:"Space Mono",monospace;font-size:.9rem;pointer-events:none}
+  #glossaryEmpty{display:none;color:var(--ink-soft);text-align:center;padding:40px 0;font-size:.95rem}
+  .cat{padding:40px 0;border-bottom:1px solid var(--line)}
+  .cat:last-of-type{border-bottom:none}
+  .cat-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+  .cat-head h2{font-size:1.4rem;font-weight:700}
+  .cat-head .en{font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+</style>
+</head>
+<body data-page="glossary">
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">PHOTO HUB</a>
+    <a class="home" href="../index.html">↩ ホーム</a>
+    <a href="#exposure">露出</a>
+    <a href="#color">色</a>
+    <a href="#quality">画質</a>
+    <a href="#video">動画</a>
+    <a href="#lens">レンズ</a>
+    <a href="#file">ファイル</a>
+    <a href="workflow.html">流れ</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <span class="eyebrow hero-eyebrow">Reference / Glossary — 用語集</span>
+    <h1>言葉に詰まったら、<span class="accent">ここで引く</span>。</h1>
+    <p class="lead">各ガイドに出てくる写真・動画の用語を、初心者目線の短い説明でまとめました。カテゴリで眺めるか、下の検索ボックスで一発で引けます。</p>
+  </div>
+</header>
+
+<div class="searchwrap">
+  <div class="wrap">
+    <input id="glossarySearch" type="search" placeholder="用語を検索（例：絞り / iso / raw / fps）" aria-label="用語を検索" autocomplete="off">
+    <span class="ico">⌕</span>
+  </div>
+</div>
+
+<main>
+
+<!-- EXPOSURE -->
+<section class="cat" id="exposure">
+  <div class="wrap">
+    <div class="cat-head reveal"><h2>露出</h2><span class="en">Exposure</span></div>
+    <div class="gloss reveal">
+      <dl class="term" data-term="ろしゅつ exposure あかるさ"><dt>露出<span>Exposure</span></dt><dd>写真の明るさのこと。明るすぎを「オーバー」、暗すぎを「アンダー」と呼びます。</dd></dl>
+      <dl class="term" data-term="しぼり fち f値 aperture ぼけ"><dt>絞り（F値）<span>Aperture</span></dt><dd>レンズの光を通す穴の大きさ。F値が小さいほど背景がぼけ、明るく撮れます。</dd></dl>
+      <dl class="term" data-term="しゃったーすぴーど ss shutter speed ぶれ"><dt>シャッタースピード<span>Shutter Speed</span></dt><dd>シャッターが開いている時間。速いと動きが止まり、遅いとブレや光の軌跡が出ます。</dd></dl>
+      <dl class="term" data-term="iso かんど isoかんど のいず"><dt>ISO感度<span>ISO</span></dt><dd>光への敏感さ。上げると暗い場所でも撮れますが、ノイズ（ザラつき）が増えます。</dd></dl>
+      <dl class="term" data-term="ろしゅつほせい exposure compensation ±"><dt>露出補正<span>Exp. Comp.</span></dt><dd>カメラ任せの明るさを ＋／− で微調整する操作。明るすぎ・暗すぎを直します。</dd></dl>
+      <dl class="term" data-term="ろしゅつのさんかっけい triangle 絞り ss iso"><dt>露出の三角形<span>Triangle</span></dt><dd>絞り・シャッタースピード・ISOの3つで明るさが決まる関係のこと。</dd></dl>
+      <dl class="term" data-term="そっこう metering 評価測光 スポット"><dt>測光<span>Metering</span></dt><dd>カメラが明るさを測る方式。画面全体の「評価」、一点の「スポット」などがあります。</dd></dl>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section class="cat" id="color">
+  <div class="wrap">
+    <div class="cat-head reveal"><h2>色</h2><span class="en">Color</span></div>
+    <div class="gloss reveal">
+      <dl class="term" data-term="ほわいとばらんす wb white balance しろ"><dt>ホワイトバランス（WB）<span>White Balance</span></dt><dd>光の色みを補正して「白を白く」する設定。写真全体の暖色／寒色を整えます。</dd></dl>
+      <dl class="term" data-term="いろおんど color temperature k けるびん"><dt>色温度<span>Color Temp. (K)</span></dt><dd>光の色みを数値（K）で表したもの。低いと暖色（夕日）、高いと寒色（日陰）。</dd></dl>
+      <dl class="term" data-term="さいど saturation あざやか"><dt>彩度<span>Saturation</span></dt><dd>色の鮮やかさ。全部の色を一律に強めます。上げすぎると不自然になりがち。</dd></dl>
+      <dl class="term" data-term="しぜんなさいど vibrance はだ"><dt>自然な彩度<span>Vibrance</span></dt><dd>地味な色を中心に持ち上げる彩度。肌の色は守られるので人物でも安心。</dd></dl>
+      <dl class="term" data-term="しきそう hue いろあい"><dt>色相<span>Hue</span></dt><dd>赤・緑・青といった「色の種類・方向」のこと。</dd></dl>
+      <dl class="term" data-term="こんとらすと contrast めりはり"><dt>コントラスト<span>Contrast</span></dt><dd>明るい所と暗い所の差。強めるとメリハリ、弱めるとやわらかい印象に。</dd></dl>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section class="cat" id="quality">
+  <div class="wrap">
+    <div class="cat-head reveal"><h2>画質</h2><span class="en">Image Quality</span></div>
+    <div class="gloss reveal">
+      <dl class="term" data-term="かいぞうど resolution がそすう"><dt>解像度<span>Resolution</span></dt><dd>画像の細かさ（画素数）。大きいほど大きく印刷・トリミングしても粗くなりにくい。</dd></dl>
+      <dl class="term" data-term="のいず noise ざらつき こうiso"><dt>ノイズ<span>Noise</span></dt><dd>暗い場所や高ISOで出るザラつき。AIノイズ除去で目立たなくできます。</dd></dl>
+      <dl class="term" data-term="だいなみっくれんじ dynamic range しらとび くろつぶれ"><dt>ダイナミックレンジ<span>Dynamic Range</span></dt><dd>明暗をどこまで記録できるかの幅。広いほど白飛び・黒潰れに強い。</dd></dl>
+      <dl class="term" data-term="しゃーぷねす sharpness りんかく"><dt>シャープネス<span>Sharpness</span></dt><dd>輪郭のくっきり具合。かけすぎると不自然になるので控えめに。</dd></dl>
+      <dl class="term" data-term="めいりょうど clarity ちゅうかんちょう"><dt>明瞭度<span>Clarity</span></dt><dd>中間調のメリハリを足す調整。風景はくっきり、人物は控えめが基本。</dd></dl>
+      <dl class="term" data-term="ぼけ bokeh はいけい"><dt>ぼけ<span>Bokeh</span></dt><dd>ピントが合っていない背景のとろけ具合。F値が小さいほど大きくぼけます。</dd></dl>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="cat" id="video">
+  <div class="wrap">
+    <div class="cat-head reveal"><h2>動画</h2><span class="en">Video</span></div>
+    <div class="gloss reveal">
+      <dl class="term" data-term="ふれーむれーと fps frame rate こますう すろー"><dt>フレームレート（fps）<span>Frame Rate</span></dt><dd>1秒あたりのコマ数。30/60が標準、120/240などはスロー用です。</dd></dl>
+      <dl class="term" data-term="どうがかいぞうど 4k 1080p resolution"><dt>動画の解像度<span>4K / 1080p</span></dt><dd>動画の画面サイズ。4Kは高精細で編集の余裕も大きい。1080pは軽い。</dd></dl>
+      <dl class="term" data-term="しゃったーかくど shutter angle 180 どうるーる"><dt>シャッター角度<span>Shutter Angle</span></dt><dd>動画の自然なブレ量の目安。「fpsの2倍のSS（180°ルール）」が基本。</dd></dl>
+      <dl class="term" data-term="びっとれーと bitrate ようりょう"><dt>ビットレート<span>Bitrate</span></dt><dd>1秒あたりのデータ量。高いほど高画質ですがファイルも大きくなります。</dd></dl>
+      <dl class="term" data-term="log dlog ろぐ いろ"><dt>Log（D-Log等）<span>Log</span></dt><dd>後で色を作る前提の、わざと眠く記録する方式。階調を多く残せます。</dd></dl>
+      <dl class="term" data-term="てぶれほせい stabilization じんばる ジンバル"><dt>手ブレ補正<span>Stabilization</span></dt><dd>揺れを抑える機能。ジンバル（物理）と電子式があります。</dd></dl>
+    </div>
+  </div>
+</section>
+
+<!-- LENS -->
+<section class="cat" id="lens">
+  <div class="wrap">
+    <div class="cat-head reveal"><h2>レンズ</h2><span class="en">Lens</span></div>
+    <div class="gloss reveal">
+      <dl class="term" data-term="しょうてんきょり mm focal length がかく ぼうえん こうかく"><dt>焦点距離（mm）<span>Focal Length</span></dt><dd>写る範囲の広さ。数字が小さいと広角（広く写る）、大きいと望遠（遠くを大きく）。</dd></dl>
+      <dl class="term" data-term="がかく angle of view"><dt>画角<span>Angle of View</span></dt><dd>写真に写る範囲の広さ。焦点距離で決まります。</dd></dl>
+      <dl class="term" data-term="たんしょうてん prime ズームしない あかるい"><dt>単焦点<span>Prime</span></dt><dd>ズームできないレンズ。明るくぼかしやすく、画質も良い傾向。</dd></dl>
+      <dl class="term" data-term="ずーむ zoom"><dt>ズーム<span>Zoom</span></dt><dd>焦点距離を変えられるレンズ。1本で広角〜望遠をカバーでき便利。</dd></dl>
+      <dl class="term" data-term="かいほうfち max aperture いちばんあかるい"><dt>開放F値<span>Max Aperture</span></dt><dd>そのレンズで使える一番小さいF値。小さいほど暗所に強くよくぼけます。</dd></dl>
+      <dl class="term" data-term="ひしゃかいしんど depth of field dof ぴんとのはば"><dt>被写界深度<span>Depth of Field</span></dt><dd>ピントが合って見える前後の幅。浅いと背景が大きくぼけます。</dd></dl>
+    </div>
+  </div>
+</section>
+
+<!-- FILE -->
+<section class="cat" id="file">
+  <div class="wrap">
+    <div class="cat-head reveal"><h2>ファイル</h2><span class="en">File</span></div>
+    <div class="gloss reveal">
+      <dl class="term" data-term="raw ろー げんぞう"><dt>RAW<span>RAW</span></dt><dd>撮影情報をそのまま記録する形式。現像で明るさや色を大きく調整できます。</dd></dl>
+      <dl class="term" data-term="jpeg jpg かんせいがぞう"><dt>JPEG<span>JPEG</span></dt><dd>圧縮された完成画像。軽くてそのまま共有でき、ほとんどの場面で使えます。</dd></dl>
+      <dl class="term" data-term="dng adobe raw"><dt>DNG<span>DNG</span></dt><dd>Adobe標準のRAW形式。汎用性が高く、AIノイズ除去の書き出しにも使われます。</dd></dl>
+      <dl class="term" data-term="srgb いろくうかん color space"><dt>sRGB<span>sRGB</span></dt><dd>画面やSNSの標準カラースペース。書き出しは基本これでOK。</dd></dl>
+      <dl class="term" data-term="ひはかいへんしゅう non destructive もとデータ"><dt>非破壊編集<span>Non-destructive</span></dt><dd>元データを変えずに「調整の指示」だけ記録する方式。何度でもやり直せます。</dd></dl>
+      <dl class="term" data-term="めたでーた metadata exif さつえいじょうほう"><dt>メタデータ<span>Metadata</span></dt><dd>撮影日時・カメラ設定・位置などの付帯情報。あとで写真を探す手がかりに。</dd></dl>
+      <dl class="term" data-term="ちょうへん long edge かきだしさいず"><dt>長辺<span>Long Edge</span></dt><dd>画像の長い方の辺。書き出しサイズの指定（例：長辺2048px）で使います。</dd></dl>
+    </div>
+  </div>
+</section>
+
+<p id="glossaryEmpty" class="wrap">該当する用語が見つかりませんでした。別のキーワードでお試しください。</p>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="eyebrow">Look It Up</span>
+    用語は各ガイドからもここへ飛べます。わからない言葉は、そのままにせず引く習慣を。<br><a href="../index.html">↩ ハブに戻る</a>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>
