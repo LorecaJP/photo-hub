@@ -14,8 +14,10 @@
 <title>EOS R8 写真の撮り方 — 撮影＆現像ハブ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="../assets/style.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="../assets/style.css"></noscript>
 <style>
   /* このページ固有：CSSで描く昼のパーク＋露出シミュレーター */
   .scene{position:absolute;inset:0;transition:filter .12s ease}
@@ -38,8 +40,33 @@
   .vd .val{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:.95rem}
   .v-good{color:var(--teal)} .v-warn{color:var(--accent)} .v-bad{color:#e8736b}
 </style>
+<script>try{if(sessionStorage.getItem('phSplash'))document.documentElement.className+=' no-splash';else sessionStorage.setItem('phSplash','1');}catch(e){}</script>
+<style>
+/* 起動スプラッシュ（最初の描画から黒地・サイト雰囲気に統一） */
+html{background:#191b1f}
+#ph-splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+  background:radial-gradient(120% 80% at 80% 10%,rgba(233,169,60,.16),transparent 55%),radial-gradient(95% 70% at 8% 105%,rgba(95,198,192,.10),transparent 60%),#191b1f;
+  transition:opacity .5s ease,visibility .5s ease}
+#ph-splash.ph-hide{opacity:0;visibility:hidden}
+.no-splash #ph-splash{display:none}
+.ph-ap-wrap{position:relative;width:60px;height:60px;display:grid;place-items:center}
+.ph-ap{width:60px;height:60px;border-radius:50%;background:conic-gradient(from 0deg,rgba(233,169,60,0),#e9a93c);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));
+          mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));
+  animation:ph-spin .95s linear infinite}
+.ph-lens{position:absolute;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f3c878,#b9852a);box-shadow:0 0 10px rgba(233,169,60,.45)}
+.ph-brand{font-family:"Space Mono",ui-monospace,Menlo,monospace;letter-spacing:.32em;font-size:.8rem;font-weight:700;color:#e9a93c;padding-left:.32em}
+.ph-sub{font-family:"Space Mono",ui-monospace,Menlo,monospace;letter-spacing:.18em;font-size:.58rem;color:#6f7681;padding-left:.18em}
+@keyframes ph-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.ph-ap{animation:none}}
+</style>
 </head>
 <body data-page="eos-r8" class="theme-r8">
+<div id="ph-splash" aria-hidden="true">
+  <div class="ph-ap-wrap"><div class="ph-ap"></div><div class="ph-lens"></div></div>
+  <div class="ph-brand">PHOTO HUB</div>
+  <div class="ph-sub">撮影＆現像ハブ</div>
+</div>
 
 <nav class="nav">
   <div class="wrap">
