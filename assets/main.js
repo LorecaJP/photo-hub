@@ -48,6 +48,22 @@
   }
 })();
 
+/* ---- 起動スプラッシュのフェードアウト ---- */
+(function(){
+  var s = document.getElementById('ph-splash');
+  if(!s) return;
+  function hide(){
+    setTimeout(function(){
+      s.classList.add('ph-hide');
+      setTimeout(function(){ if(s.parentNode) s.parentNode.removeChild(s); }, 550);
+    }, 150); // 最低表示でチラつき防止
+  }
+  if(document.readyState === 'complete') hide();
+  else window.addEventListener('load', hide);
+  // フォールバック：load が来なくても必ず消す
+  setTimeout(function(){ if(s.parentNode){ s.classList.add('ph-hide'); setTimeout(function(){ if(s.parentNode) s.parentNode.removeChild(s); }, 550); } }, 4000);
+})();
+
 /* ---- Service Worker 登録（PWA：オフライン対応・インストール可能化） ---- */
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
