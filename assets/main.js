@@ -48,6 +48,19 @@
   }
 })();
 
+/* ---- 複数リンクを持つカード本体をタップ可能に（ピルは通常動作） ---- */
+(function(){
+  document.querySelectorAll('div.dev-card').forEach(function(card){
+    var primary = card.querySelector('a[href]');
+    if(!primary) return;
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function(e){
+      if(e.target.closest('a')) return;            // ピル等のリンクはそのまま
+      window.location.href = primary.getAttribute('href');
+    });
+  });
+})();
+
 /* ---- 起動スプラッシュのフェードアウト ---- */
 (function(){
   var s = document.getElementById('ph-splash');
