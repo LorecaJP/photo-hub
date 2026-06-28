@@ -18,16 +18,9 @@
 <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-  /* このページ固有：CSSで描く夕暮れパークのサンプル写真 */
+  /* このページ固有：実写サンプル＋現像シミュレーター */
   .scene{position:absolute;inset:0}
-  .sky{position:absolute;inset:0;background:linear-gradient(#1a2a4a 0%,#3d4d7a 26%,#9a6f8e 52%,#e08a5a 74%,#f0b96a 100%)}
-  .sun{position:absolute;left:50%;bottom:30%;transform:translateX(-50%);width:120px;height:120px;border-radius:50%;
-    background:radial-gradient(circle,#fff6d8 0%,#ffd887 45%,rgba(255,200,110,0) 72%);filter:blur(2px)}
-  .hills{position:absolute;left:0;right:0;bottom:24%;height:46%;background:linear-gradient(#5a3f5e,#2e2238);
-    clip-path:polygon(0 60%,12% 38%,26% 55%,40% 22%,52% 48%,66% 18%,80% 50%,92% 30%,100% 52%,100% 100%,0 100%);opacity:.9}
-  .ground{position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(#241a2c,#120c16)}
-  .castle{position:absolute;left:50%;bottom:28%;transform:translateX(-50%);width:60px;height:84px;background:#1b1320;
-    clip-path:polygon(0 100%,0 46%,18% 46%,18% 24%,30% 24%,30% 10%,38% 0,46% 10%,46% 24%,54% 24%,54% 10%,62% 0,70% 10%,70% 24%,82% 24%,82% 46%,100% 46%,100% 100%);opacity:.92}
+  .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .ov{position:absolute;inset:0;pointer-events:none}
   #hiOv{mix-blend-mode:multiply;opacity:0}
   #shOv{opacity:0}
@@ -198,14 +191,14 @@ html{background:#191b1f}
     <div class="sec-head reveal">
       <span class="eyebrow">Try It — 触って覚える</span>
       <h2>スライダーを動かしてみる</h2>
-      <p>夕暮れのパーク風サンプルです。動かすと写真がどう変わるか体感できます。ぐいぐい動かして、最後はRESETで戻せます。</p>
+      <p>夕景の実写サンプルです。動かすと写真がどう変わるか体感できます。ぐいぐい動かして、最後はRESETで戻せます。</p>
     </div>
 
     <div class="lab reveal">
       <div class="lab-grid">
         <div class="stage">
           <div class="scene" id="scene">
-            <div class="sky"></div><div class="sun"></div><div class="hills"></div><div class="castle"></div><div class="ground"></div>
+            <img class="photo" src="develop.png" alt="夕景の風景写真（現像サンプル）" width="724" height="543" decoding="async">
           </div>
           <div class="ov" id="hiOv"></div>
           <div class="ov" id="shOv"></div>
