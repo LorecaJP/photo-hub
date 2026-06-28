@@ -21,7 +21,7 @@
   /* このページ固有：実写の背景＋被写体カットアウト＋露出シミュレーター */
   .scene{position:absolute;inset:0;transition:filter .12s ease}
   .bgphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:center;transition:filter .12s ease,transform .12s ease}
-  .subjphoto{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:92%;width:auto;transition:filter .12s ease}
+  .subjphoto{position:absolute;left:49%;bottom:0;transform:translateX(-50%);height:83%;width:auto;transition:filter .12s ease}
   .grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:0;transition:opacity .12s ease;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px}
   .verdicts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line)}
@@ -116,7 +116,7 @@ html{background:#191b1f}
         <div class="stage">
           <div class="scene" id="scene">
             <img class="bgphoto" id="bg" src="bg.png" alt="公園の背景写真" width="724" height="543" decoding="async">
-            <img class="subjphoto" id="subject" src="subject.png" alt="被写体（人物）" width="512" height="768" decoding="async">
+            <img class="subjphoto" id="subject" src="subject.png" alt="被写体（人物）" width="242" height="692" decoding="async">
           </div>
           <div class="grain" id="grain"></div>
         </div>
