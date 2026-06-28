@@ -71,7 +71,8 @@ code{font-family:"Space Mono",monospace;background:var(--panel-2);padding:2px 7p
 .hero h1 .accent{background:linear-gradient(100deg,var(--accent),var(--accent-soft));-webkit-background-clip:text;background-clip:text;color:transparent}
 .lead{font-size:clamp(1rem,2.2vw,1.18rem);color:var(--ink-soft);max-width:48ch}
 .hero-meta{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px}
-.chip{font-size:.82rem;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--panel)}
+.chip{font-size:.82rem;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--panel);text-decoration:none;transition:border-color .2s ease,color .2s ease}
+a.chip:hover{border-color:var(--accent);color:var(--accent)}
 
 /* ---------- section ---------- */
 .section{padding:72px 0;border-bottom:1px solid var(--line)}
