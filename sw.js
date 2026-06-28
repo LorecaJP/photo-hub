@@ -2,7 +2,7 @@
    ・アプリシェルを事前キャッシュ（オフライン対応）
    ・ナビゲーションはネット優先（オンライン時は常に最新）→ 失敗時キャッシュ
    ・静的リソース（CSS/JS/アイコン/フォント）はキャッシュ優先＋裏で更新 */
-var VERSION = 'photohub-v2';
+var VERSION = 'photohub-v3';
 var BASE = '/photo-hub/';
 var SHELL = [
   BASE, BASE + 'index.html',
@@ -17,7 +17,7 @@ var SHELL = [
   BASE + 'eos-r8/operate.html', BASE + 'eos-r8/shoot.html',
   BASE + 'pocket4/operate.html', BASE + 'pocket4/shoot.html',
   BASE + 'lightroom/develop.png',
-  BASE + 'eos-r8/bg.png', BASE + 'eos-r8/subject.png'
+  BASE + 'eos-r8/bg.png'
 ];
 
 self.addEventListener('install', function (e) {
