@@ -7,7 +7,7 @@
 
 ## このプロジェクトは何か
 - `lorecajp/photo-hub` … 個人用の静的サイト「撮影＆現像ハブ」。オーナーの機材
-  （Canon EOS R8 / DJI Osmo Pocket 4 / iPhone / DJI Mic Mini / Lightroom）の
+  （Canon EOS R8 / DJI Osmo Pocket 4 Pro / iPhone / DJI Mic Mini 2 / Lightroom）の
   撮り方・操作・現像を、初心者目線でまとめたリファレンス。
 - 公開先（GitHub Pages）: https://lorecajp.github.io/photo-hub/
 - **オーナーは日本語**。サイト内容・やり取り・このリポジトリのドキュメントも日本語。
@@ -40,9 +40,9 @@
 ```
 index.html                        ハブ（トップ）
 eos-r8/shoot.html  operate.html   EOS R8（写真の撮り方＝露出シミュレーター入り / 操作）
-pocket4/shoot.html operate.html   Pocket4（fps シミュレーター入り / 操作）
+pocket4/shoot.html operate.html   Pocket 4 Pro（fps シミュレーター入り / 操作。フォルダ名は pocket4 のまま）
 iphone/shoot.html                 iPhone（※ shoot のみ）
-mic-mini/index.html               DJI Mic Mini
+mic-mini/index.html               DJI Mic Mini 2（フォルダ名は mic-mini のまま）
 lightroom/index.html              Lightroom（現像シミュレーター入り）
 reference/glossary.html workflow.html  用語集 / 共通ワークフロー
 assets/style.css  assets/main.js  共通デザインシステム / 共通JS
