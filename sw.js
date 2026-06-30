@@ -2,7 +2,7 @@
    ・アプリシェルを事前キャッシュ（オフライン対応）
    ・ナビゲーションはネット優先（オンライン時は常に最新）→ 失敗時キャッシュ
    ・静的リソース（CSS/JS/アイコン/フォント）はキャッシュ優先＋裏で更新 */
-var VERSION = 'photohub-v4';
+var VERSION = 'photohub-v5';
 var BASE = '/photo-hub/';
 var SHELL = [
   BASE, BASE + 'index.html',
